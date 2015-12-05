@@ -1,0 +1,13 @@
+<h3>{{model.name}}</h3>
+
+Total pets: {{model.pets.length}}
+<br>
+
+<h4>My Company</h4>
+{{model.company.name}}
+
+<h4>My Pets</h4>
+
+{{#each model.pets as |pet|}}
+  <p>{{pet.name}} - Age: {{pet.age}}</p>
+{{/each}}
