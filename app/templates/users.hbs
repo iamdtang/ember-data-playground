@@ -1,7 +1,7 @@
 {{#each model as |user|}}
   <p>
     {{#link-to 'users.user' user.id}}
-      {{user.name}}
+      {{user.id}} - {{user.name}}
     {{/link-to}}
   </p>
 {{/each}}

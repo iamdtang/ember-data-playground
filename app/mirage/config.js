@@ -1,24 +1,50 @@
 export default function() {
   this.get('/api/v1/users', function(db, request) {
-    return db.users;
+    return {
+      user: db.users
+    };
   });
 
   this.get('/api/v1/users/:id', function(db, request) {
-    return db.users.find(request.params.id);
+    // return {
+    //   user: db.users.find(request.params.id)
+    // };
+
+    // sideloading
+    let user = db.users.find(request.params.id);
+    let pets = user.pets.map((id) => {
+      return db.pets.find(id);
+    });
+
+    let company = db.companies.find(user.company);
+
+    return {
+      user: user,
+      pets: pets,
+      companies: [company],
+      // company: [company],
+      // company: company
+    }
   });
 
   this.post('/api/v1/users', function(db, request) {
     let params = JSON.parse(request.requestBody);
     console.log(request.requestBody);
-    return db.users.insert(params);
+    return {
+      user: db.users.insert(params)
+    };
   });
 
   this.get('/api/v1/pets/:id', function(db, request) {
-    return db.pets.find(request.params.id);
+    return {
+      pets: db.pets.find(request.params.id)
+    };
   });
 
   this.get('/api/v1/companies/:id', function(db, request) {
-    return db.companies.find(request.params.id);
+    return {
+      company: db.companies.find(request.params.id)
+    };
   });
 
   // this.get('/api/users', function() {

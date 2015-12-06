@@ -1,5 +1,5 @@
 import Mirage/*, {faker} */ from 'ember-cli-mirage';
 
 export default Mirage.Factory.extend({
-  name: faker.company.companyName
+  name: faker.company.companyName('hey')
 });
