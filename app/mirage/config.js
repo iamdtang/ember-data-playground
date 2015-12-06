@@ -13,8 +13,17 @@ export default function() {
 
   this.get('/api/v1/users/:id', function(db, request) {
     let user = db.users.find(request.params.id);
+    let included = [];
 
     let petsData = user.pets.map((id) => {
+      let pet = db.pets.find(id);
+
+      included.push({
+        type: 'pets',
+        id: id,
+        attributes: pet
+      });
+
       return {
         type: 'pets',
         id: id
@@ -34,7 +43,8 @@ export default function() {
             data: petsData
           }
         }
-      }
+      },
+      included: included
     };
   });
 
