@@ -1,30 +1,41 @@
 export default function() {
   this.get('/api/v1/users', function(db, request) {
     return {
-      user: db.users
+      data: db.users.map((attrs) => {
+        return {
+          type: 'users',
+          id: attrs.id,
+          attributes: attrs
+        };
+      })
     };
   });
 
   this.get('/api/v1/users/:id', function(db, request) {
-    // return {
-    //   user: db.users.find(request.params.id)
-    // };
-
-    // sideloading
     let user = db.users.find(request.params.id);
-    let pets = user.pets.map((id) => {
-      return db.pets.find(id);
+
+    let petsData = user.pets.map((id) => {
+      return {
+        type: 'pets',
+        id: id
+      };
     });
 
-    let company = db.companies.find(user.company);
-
     return {
-      user: user,
-      pets: pets,
-      companies: [company],
-      // company: [company],
-      // company: company
-    }
+      data: {
+        type: 'users',
+        id: user.id,
+        attributes: {
+          first: user.first,
+          last: user.last
+        },
+        relationships: {
+          pets: {
+            data: petsData
+          }
+        }
+      }
+    };
   });
 
   this.post('/api/v1/users', function(db, request) {
@@ -36,8 +47,14 @@ export default function() {
   });
 
   this.get('/api/v1/pets/:id', function(db, request) {
+    let pet = db.pets.find(request.params.id);
+
     return {
-      pets: db.pets.find(request.params.id)
+      data: {
+        type: 'pets',
+        id: pet.id,
+        attributes: pet
+      }
     };
   });
 
