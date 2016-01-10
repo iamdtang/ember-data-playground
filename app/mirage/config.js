@@ -1,3 +1,5 @@
+import Mirage from 'ember-cli-mirage';
+
 export default function() {
   this.get('/api/v1/users', function(db, request) {
     return db.users;
@@ -8,9 +10,15 @@ export default function() {
   });
 
   this.post('/api/v1/users', function(db, request) {
-    let params = JSON.parse(request.requestBody);
-    console.log(request.requestBody);
-    return db.users.insert(params);
+    // let params = JSON.parse(request.requestBody);
+    // console.log(request.requestBody);
+    // return db.users.insert(params);
+
+    return new Mirage.Response(422, {}, {
+      errors: {
+        first: [ 'First name is not long enough', 'Must be a string.' ]
+      }
+    });
   });
 
   this.get('/api/v1/pets/:id', function(db, request) {
