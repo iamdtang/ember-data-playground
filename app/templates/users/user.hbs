@@ -8,6 +8,10 @@ Total pets: {{model.pets.length}}
 
 <h4>My Pets</h4>
 
+<h4>Home</h4>
+
+{{model.home.location}}
+
 {{#each model.pets as |pet|}}
   <p>{{pet.name}} - Age: {{pet.age}}</p>
 {{/each}}

@@ -6,22 +6,46 @@ export default function() {
   });
 
   this.get('/api/v1/users/:id', function(db, request) {
-    // return {
-    //   user: db.users.find(request.params.id)
-    // };
+    // let user = db.users.find(request.params.id);
+    // let pets = user.pets.map((id) => {
+    //   return db.pets.find(id);
+    // });
+
+    return {
+      user: {
+        "age":20,
+        "tall":true,
+        "email":"person3@test.com",
+        "first":"Anthony",
+        "last":"Matilde",
+        "zipCode":"",
+        "pets":[1,3,4],
+        "company_id": 3,
+        "home_id": 99,
+        "id":4
+      },
+      company: [{
+        id: 3,
+        name: 'Verizon'
+      }],
+      home: [{
+        id: 99,
+        location: 'boom'
+      }]
+    };
 
     // sideloading
-    let user = db.users.find(request.params.id);
-    let pets = user.pets.map((id) => {
-      return db.pets.find(id);
-    });
+
+    // let pets = user.pets.map((id) => {
+    //   return db.pets.find(id);
+    // });
 
     let company = db.companies.find(user.company);
 
     return {
       user: user,
       pets: pets,
-      companies: [company],
+      companies: [company]
       // company: [company],
       // company: company
     }

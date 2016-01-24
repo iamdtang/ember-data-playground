@@ -19,5 +19,5 @@ export default Mirage.Factory.extend({
   pets: function(i) {
     return [1, 3, 4];
   },
-  company: faker.random.number
+  company_id: faker.random.number
 });
