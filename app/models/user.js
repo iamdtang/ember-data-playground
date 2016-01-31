@@ -8,5 +8,8 @@ export default DS.Model.extend({
 
   name: Ember.computed('first', 'last', function() {
     return this.get('first') + ' ' + this.get('last');
-  })
+  }),
+  address: DS.attr(),
+  history: DS.attr(),
+  skills: DS.hasMany('skill')
 });

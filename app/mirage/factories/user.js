@@ -19,5 +19,25 @@ export default Mirage.Factory.extend({
   pets: function(i) {
     return [1, 3, 4];
   },
-  company: faker.random.number
+  company: faker.random.number,
+  address: function() {
+    return {
+      street: '1334 main street',
+      zip: 90003
+    };
+  },
+  history: function() {
+    return [
+      { url: 'http://google.com', time: '2015-10-01T20:12:53Z' },
+      { url: 'http://apple.com',  time: '2014-10-01T20:12:53Z' },
+      { url: 'http://yahoo.com',  time: '2013-10-01T20:12:53Z' }
+    ];
+  },
+  skills: function() {
+    return [
+      { id: 1, name: 'JavaScript' },
+      { id: 3, name: 'PHP' },
+      { id: 9, name: 'Teaching' }
+    ]
+  }
 });

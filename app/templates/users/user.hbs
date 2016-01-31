@@ -3,11 +3,34 @@
 Total pets: {{model.pets.length}}
 <br>
 
+<hr>
+
+<h4>Skills</h4>
+
+<ul>
+  {{#each model.skills as |skill| }}
+  <li>
+    {{skill.name}}
+  </li>
+  {{/each}}
+</ul>
+
+<hr>
+
+<h4>History</h4>
+
+<ul>
+  {{#each model.history as |historyItem| }}
+  <li>
+    {{historyItem.url}} - {{historyItem.time}}
+  </li>
+  {{/each}}
+</ul>
+
 <h4>My Company</h4>
 {{model.company.name}}
 
 <h4>My Pets</h4>
-
 {{#each model.pets as |pet|}}
   <p>{{pet.name}} - Age: {{pet.age}}</p>
 {{/each}}
