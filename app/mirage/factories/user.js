@@ -35,9 +35,9 @@ export default Mirage.Factory.extend({
   },
   skills: function() {
     return [
-      { id: 1, name: 'JavaScript' },
-      { id: 3, name: 'PHP' },
-      { id: 9, name: 'Teaching' }
+      { id: 1, name: 'JavaScript', category: { id: 8, name: 'Technology' } },
+      { id: 3, name: 'PHP', category: { id: 8, name: 'Technology' } },
+      { id: 9, name: 'Teaching', category: { id: 3, name: 'Education' } }
     ]
   }
 });

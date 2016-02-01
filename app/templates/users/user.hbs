@@ -10,7 +10,7 @@ Total pets: {{model.pets.length}}
 <ul>
   {{#each model.skills as |skill| }}
   <li>
-    {{skill.name}}
+    {{skill.name}} in ({{skill.category.name}})
   </li>
   {{/each}}
 </ul>
