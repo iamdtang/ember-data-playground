@@ -1,7 +1,7 @@
 export default function() {
   this.get('/api/v1/users', function(db, request) {
     return {
-      user: db.users
+      users: db.users
     };
   });
 

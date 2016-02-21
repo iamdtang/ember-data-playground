@@ -15,11 +15,11 @@ export default Mirage.Factory.extend({
 
   first: faker.name.firstName,       // using faker
   last: faker.name.firstName,
-  zipCode: faker.address.zipCode,
-  links: function(i) {
-    return {
-      pets: '/api/v1/users/' + i + '/pets',
-      company: '/api/v1/users/' + i + '/company'
-    };
-  }
+  zipCode: faker.address.zipCode
+  // links: function(i) {
+  //   return {
+  //     pets: '/api/v1/users/' + i + '/pets',
+  //     company: '/api/v1/users/' + i + '/company'
+  //   };
+  // }
 });
