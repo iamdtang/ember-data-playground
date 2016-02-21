@@ -16,8 +16,10 @@ export default Mirage.Factory.extend({
   first: faker.name.firstName,       // using faker
   last: faker.name.firstName,
   zipCode: faker.address.zipCode,
-  pets: function(i) {
-    return [1, 3, 4];
-  },
-  company: faker.random.number
+  links: function(i) {
+    return {
+      pets: '/api/v1/users/' + i + '/pets',
+      company: '/api/v1/users/' + i + '/company'
+    };
+  }
 });

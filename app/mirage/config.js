@@ -6,32 +6,33 @@ export default function() {
   });
 
   this.get('/api/v1/users/:id', function(db, request) {
-    // return {
-    //   user: db.users.find(request.params.id)
-    // };
-
-    // sideloading
     let user = db.users.find(request.params.id);
-    let pets = user.pets.map((id) => {
-      return db.pets.find(id);
-    });
-
-    let company = db.companies.find(user.company);
 
     return {
-      user: user,
-      pets: pets,
-      companies: [company],
-      // company: [company],
-      // company: company
+      user: user
+    };
+  });
+
+  this.get('/api/v1/users/:id/company', function(db, request) {
+    let allCompanies = db.companies;
+    return {
+      company: allCompanies[0]
     }
   });
+
+  this.get('/api/v1/users/:id/pets', function(db, request) {
+    return {
+      pets: db.pets
+    }
+  });
+
+
 
   this.post('/api/v1/users', function(db, request) {
     let params = JSON.parse(request.requestBody);
     console.log(request.requestBody);
     return {
-      user: db.users.insert(params)
+      users: db.users.insert(params)
     };
   });
 
